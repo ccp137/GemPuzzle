@@ -4,7 +4,9 @@ Gem Puzzle is a a sliding puzzle that consists of a frame of numbered square til
 
 ## Things to do
 
-*
+* class Puzzle, which has member functions IsSolvable(), SolveIt(), numRow, numCol
+* class Game
+* class Solution, which is a child of the class game
 
 ## Git command
 
