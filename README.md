@@ -44,6 +44,10 @@ Remove a file
     git rm FILENAME
     git commit -m "COMMENTS"
 ```
+Edit a file
+```
+    git commit -a -m "COMMENTS" 
+```
 Update changes to the server
 ```
     git push origin master
