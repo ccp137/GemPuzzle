@@ -2,11 +2,33 @@ GemPuzzle
 =========
 Gem Puzzle is a a sliding puzzle that consists of a frame of numbered square tiles in random order with one tile missing (from [wiki](http://en.wikipedia.org/wiki/15_puzzle)).
 
+## Blueprint
+```
+  class Puzzle
+    Description:
+    Objective:
+    Variables:
+    Functions:
+
+  class Game
+    Description:
+    Objective:
+    Variables:
+    Functions:
+
+  class Solution:
+    Description:
+    Objective:
+    Variables:
+    Functions:
+
+```
+
 ## Things to do
 
-* class Puzzle, which has member functions IsSolvable(), SolveIt(), numRow, numCol
+* class Puzzle
 * class Game
-* class Solution, which is a child of the class game
+* class Solution
 
 ## Git command
 
