@@ -14,7 +14,7 @@ class Puzzle{
 
     public:
         // default & init constructor
-        Puzzle(int nrow = 4, int ncol = 4, bool randomSet = false);
+        Puzzle(int nrow = 4, int ncol = 4);
 
         // init constructor version 2
         Puzzle(int nrow, int ncol, int* entries);
@@ -51,6 +51,9 @@ class Puzzle{
 
         // swap blank space and a nearby entry
         void Swap(MoveDirect thisDirect);
+
+        // randomly permute all entries
+        void RandomSet();
 
 
     private:

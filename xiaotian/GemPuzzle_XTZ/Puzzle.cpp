@@ -7,10 +7,12 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <algorithm>
+#include <time.h>
 #include "Puzzle.h"
 
 // default & init constructor
-Puzzle::Puzzle(int nrow, int ncol, bool randomSet){
+Puzzle::Puzzle(int nrow, int ncol){
     Nrow = nrow;
     Ncol = ncol;
 
@@ -19,21 +21,14 @@ Puzzle::Puzzle(int nrow, int ncol, bool randomSet){
         Entries[i] = new int[Ncol];
     }
 
-    if(randomSet == false){
-
-        for(int i = 0; i< Nrow; i++){
-            for(int j = 0; j < Ncol; j++){
-                Entries[i][j] = i*Ncol + j + 1;
-            }
+    for(int i = 0; i< Nrow; i++){
+        for(int j = 0; j < Ncol; j++){
+            Entries[i][j] = i*Ncol + j + 1;
         }
-
-        Vblank = Nrow - 1;
-        Hblank = Ncol - 1;
-
-    } else {
-        // to be implemented soon
     }
 
+    Vblank = Nrow - 1;
+    Hblank = Ncol - 1;
 
 }
 
@@ -149,6 +144,33 @@ void Puzzle::SetEntries(int* entries){
             index++;
         }
     }
+}
+
+// randomly permute all entries
+void Puzzle::RandomSet(){
+    int *entries = new int[Nrow*Ncol+1];
+    for(int i = 0; i < (Nrow*Ncol); i++){
+        entries[i] = i + 1;
+    }
+    entries[Nrow*Ncol] = 0;
+
+    /* initialize random seed: */
+    srand (time(NULL));
+
+    std::random_shuffle(entries, entries + Nrow*Ncol);
+    int index = 0;
+    for(int i = 0; i < Nrow; i++){
+        for(int j = 0; j < Ncol; j++){
+            Entries[i][j] = entries[index];
+            if (Entries[i][j] == Nrow * Ncol){
+                Vblank = i;
+                Hblank = j;
+            }
+            index++;
+        }
+    }
+
+    delete[] entries;
 }
 
 // displaying

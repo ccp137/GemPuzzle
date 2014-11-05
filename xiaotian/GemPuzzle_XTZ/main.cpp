@@ -46,6 +46,11 @@ int main()
     cin.ignore();
 
     myPuzzle0.Display();
+    cin.ignore();
+
+    myPuzzle0.RandomSet();
+    myPuzzle0.Display();
+
 
     return 0;
 }
