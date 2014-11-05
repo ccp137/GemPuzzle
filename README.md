@@ -5,7 +5,7 @@ Gem Puzzle is a sliding puzzle that consists of a frame of numbered square tiles
 ## Blueprint
 ```
   class Puzzle
-    Description:
+    Description: define the basic data tructure 
     Objective:
     Variables:
     Functions:
