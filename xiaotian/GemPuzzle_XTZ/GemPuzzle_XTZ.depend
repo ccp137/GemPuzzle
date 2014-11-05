@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1415154820 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/main.cpp
+	<iostream>
+	"Puzzle.h"
+
+1415154012 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.h
+
+1415155592 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.cpp
+	<iostream>
+	<iomanip>
+	<cmath>
+	"Puzzle.h"
+
