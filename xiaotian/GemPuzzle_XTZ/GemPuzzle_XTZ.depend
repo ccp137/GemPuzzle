@@ -13,3 +13,20 @@
 	<time.h>
 	"Puzzle.h"
 
+1415217064 source:/home/xiaotian/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/main.cpp
+	<iostream>
+	"Puzzle.h"
+	"tests.h"
+
+1415212572 /home/xiaotian/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.h
+
+1415216552 source:/home/xiaotian/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.cpp
+	<iostream>
+	<iomanip>
+	<cmath>
+	<algorithm>
+	<time.h>
+	"Puzzle.h"
+
+1415217127 /home/xiaotian/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/tests.h
+

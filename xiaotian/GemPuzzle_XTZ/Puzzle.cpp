@@ -57,6 +57,7 @@ Puzzle::Puzzle(int nrow, int ncol, int* entries){
 
 // copy constructor
 Puzzle::Puzzle(const Puzzle& source){
+    // std::cout << std::endl << "copy constructor called" << std::endl;
     Entries = NULL;
 	// Calls the assignment operator
 	*this = source;
@@ -64,6 +65,7 @@ Puzzle::Puzzle(const Puzzle& source){
 
 // destructor
 Puzzle::~Puzzle(){
+    // std::cout << std::endl << "destructor called" << std::endl;
     for(int i = 0; i < Nrow; i++){
         delete[] Entries[i];
     }
@@ -71,8 +73,9 @@ Puzzle::~Puzzle(){
 	Entries = NULL;
 }
 
-// assignment operator
+// deep copy assignment operator
 Puzzle& Puzzle::operator = (const Puzzle& source){
+    // std::cout << std::endl << "deep copy assignment operator called" << std::endl;
 
     // first we have to dispose previously allocated memory
     if(Entries != NULL){
@@ -171,6 +174,23 @@ void Puzzle::RandomSet(){
     }
 
     delete[] entries;
+}
+
+// let user set the entries
+void Puzzle::ByUser(){
+    std::cout << "Please enter the entries for this " << Nrow << " x " << Ncol << " gem puzzle." << std::endl;
+    for(int i = 0; i < Nrow; i++){
+        for(int j = 0; j < Ncol; j++){
+            std::cout << "[" << i << "][" << j << "]:  ";
+            std::cin >> Entries[i][j];
+            if (Entries[i][j] == Nrow * Ncol){
+                Vblank = i;
+                Hblank = j;
+            }
+
+            std::cout << std::endl;
+        }
+    }
 }
 
 // displaying

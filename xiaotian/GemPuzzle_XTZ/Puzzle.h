@@ -25,7 +25,7 @@ class Puzzle{
         // destructor
         ~Puzzle();
 
-        // assignment operator
+        // deep copy assignment operator
         Puzzle& operator = (const Puzzle& source);
 
         // get Nrow
@@ -54,6 +54,9 @@ class Puzzle{
 
         // randomly permute all entries
         void RandomSet();
+
+        // let user set the entries
+        void ByUser();
 
 
     private:

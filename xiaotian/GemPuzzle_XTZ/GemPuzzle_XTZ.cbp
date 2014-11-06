@@ -32,7 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Puzzle.cpp" />
+		<Unit filename="Puzzle.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="testPuzzle.cpp" />
+		<Unit filename="tests.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
