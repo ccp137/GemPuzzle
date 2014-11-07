@@ -110,4 +110,23 @@ void testPuzzle(){
     myPuzzle5b.Display();
     std::cout << std::endl;
     std::cin.ignore();
+
+    // testing Puzzle::operator ==
+    std::cout << "10. testing Puzzle::operator ==" << std::endl;
+    Puzzle myPuzzle7(2,2);
+    int tempArray1[] = {3,4,1,2};
+    myPuzzle7.SetEntries(tempArray1);
+    myPuzzle7.Display();
+
+    Puzzle myPuzzle8(2,2);
+    int tempArray2[] = {4,3,1,2};
+    myPuzzle8.SetEntries(tempArray2);
+    myPuzzle8.Display();
+
+    std::cout << std::endl << (myPuzzle7 == myPuzzle8) << std::endl;
+
+    myPuzzle7.Swap(BLANK_LEFT);
+    std::cout << std::endl << (myPuzzle7 == myPuzzle8) << std::endl;
+
+
 }

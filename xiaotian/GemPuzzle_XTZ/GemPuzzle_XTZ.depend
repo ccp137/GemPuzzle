@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1415157256 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/main.cpp
+1415326202 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/main.cpp
 	<iostream>
 	"Puzzle.h"
+	"tests.h"
 
-1415156815 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.h
+1415285343 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.h
 
-1415157542 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.cpp
+1415326089 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.cpp
 	<iostream>
 	<iomanip>
 	<cmath>
@@ -29,4 +30,10 @@
 	"Puzzle.h"
 
 1415217127 /home/xiaotian/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/tests.h
+
+1415217126 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/tests.h
+
+1415325440 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/testPuzzle.cpp
+	<iostream>
+	"Puzzle.h"
 

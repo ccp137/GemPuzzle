@@ -28,6 +28,9 @@ class Puzzle{
         // deep copy assignment operator
         Puzzle& operator = (const Puzzle& source);
 
+        // Comparison operator: Puzzles are equal when they are the same
+        bool operator == (const Puzzle& compareTo) const;
+
         // get Nrow
         int GetNrow() const;
 

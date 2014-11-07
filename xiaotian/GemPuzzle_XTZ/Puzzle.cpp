@@ -109,6 +109,22 @@ Puzzle& Puzzle::operator = (const Puzzle& source){
 
 }
 
+// Comparison operator: Puzzles are equal when their static fields are the same
+// , and they dynamic fields store the same values
+bool Puzzle::operator == (const Puzzle& compareTo) const{
+    if(Nrow == compareTo.GetNrow() && Ncol == compareTo.GetNcol() && Vblank == compareTo.GetVblank() && Hblank == compareTo.GetHblank()){
+        bool isEqual = true;
+        for(int i = 0; (i < Nrow) && (isEqual == true); i++){
+            for(int j = 0; (j < Ncol) && (isEqual == true); j++){
+                isEqual = (Entries[i][j] == compareTo.GetEntries()[i][j]);
+            }
+        }
+        return isEqual;
+    }else{
+        return false;
+    }
+}
+
 // get Nrow
 int Puzzle::GetNrow() const {
     return Nrow;
