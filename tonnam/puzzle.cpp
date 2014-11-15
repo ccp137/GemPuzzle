@@ -31,7 +31,7 @@ Game::Game(int NDim)
     };
 
     Dim = NDim;
-    VacCoord = SearchElement(16);
+    VacCoord = SearchElement(Dim*Dim);
 }
 
 int Game::GetBoxElement(int x, int y)
@@ -81,25 +81,32 @@ bool Game::AskMove()
     bool InvalidMove = true;
     while (InvalidMove)
     {
-        std::cout << "Next move: ";
+        std::cout << "Next move (0 = exit): ";
         std::cin >> iMove;
         if (iMove==0)
         {
             ExitAskMove = true;
             break;
         }
-        std::vector<int> iMoveCoord = SearchElement(iMove);
-        if( (((iMoveCoord[0]==(VacCoord[0]+1)) | (iMoveCoord[0]==(VacCoord[0]-1)))&(iMoveCoord[1]==VacCoord[1])) | (((iMoveCoord[1]==(VacCoord[1]+1)) | (iMoveCoord[1]==(VacCoord[1]-1)))&(iMoveCoord[0]==VacCoord[0])) )
-        {
-            // ((AdjacentRow & SameColumn) | (AdjacentColumn & SameRow))
-            Box[VacCoord[0]][VacCoord[1]]=Box[iMoveCoord[0]][iMoveCoord[1]]; // Swap with vacant
-            Box[iMoveCoord[0]][iMoveCoord[1]]=16;
-            VacCoord[0]=iMoveCoord[0];
-            VacCoord[1]=iMoveCoord[1];
-            InvalidMove = false;
-        } else
+        else if (iMove >= Dim*Dim)
         {
             std::cout << "Invalid move" << std::endl;
+        }
+        else
+        {
+            std::vector<int> iMoveCoord = SearchElement(iMove);
+            if( (((iMoveCoord[0]==(VacCoord[0]+1)) | (iMoveCoord[0]==(VacCoord[0]-1)))&(iMoveCoord[1]==VacCoord[1])) | (((iMoveCoord[1]==(VacCoord[1]+1)) | (iMoveCoord[1]==(VacCoord[1]-1)))&(iMoveCoord[0]==VacCoord[0])) )
+            {
+                // ((AdjacentRow & SameColumn) | (AdjacentColumn & SameRow))
+                Box[VacCoord[0]][VacCoord[1]]=Box[iMoveCoord[0]][iMoveCoord[1]]; // Swap with vacant
+                Box[iMoveCoord[0]][iMoveCoord[1]]=Dim*Dim;
+                VacCoord[0]=iMoveCoord[0];
+                VacCoord[1]=iMoveCoord[1];
+                InvalidMove = false;
+            } else
+            {
+                std::cout << "Invalid move" << std::endl;
+            }
         }
 
     }
@@ -111,14 +118,95 @@ std::vector<int> Game::GetVacCoord()
     return VacCoord;
 }
 
+Menu::Menu()
+{
+
+}
+
+bool Menu::AskAction()
+{
+    bool ExitAskAction = false;
+    bool InvalidAction = true;
+    int iAction;
+    int iDim;
+    int iSelect;
+
+    while(InvalidAction)
+    {
+        std::cout << "0 = exit, 1 = create new game, 2 = load saved game: ";
+        std::cin >> iAction;
+        if (iAction == 0)
+        {
+            ExitAskAction = true;
+            break;
+        }
+        else if (iAction == 1)
+        {
+            std::cout << "Dimension of box: ";
+            std::cin >> iDim;
+            Game NewGame(iDim);
+            GameVector.push_back(NewGame);
+
+            std::cout << "Game start\n" << std::endl;
+            bool ExitAsk = false;
+            while(!ExitAsk)
+            {
+               NewGame.DisplayBox();
+               ExitAsk = NewGame.AskMove();
+            }
+
+            InvalidAction = false;
+        }
+        else if (iAction == 2)
+        {
+            // Display all games
+            std::cout << "Game list:\n" << std::endl;
+            for(int i = 0; i < GameVector.size() ; ++i)
+            {
+                std::cout << "Game " << i << std::endl;
+                GameVector[i].DisplayBox();
+                std::cout << " " << std::endl;
+            }
+
+            std::cout << "Select game: ";
+            std::cin >> iSelect;
+
+            std::cout << "Game start\n" << std::endl;
+            bool ExitAsk = false;
+            while(!ExitAsk)
+            {
+               GameVector[iSelect].DisplayBox();
+               ExitAsk = GameVector[iSelect].AskMove();
+            }
+
+        }
+        else
+        {
+            std::cout << "Invalid move" << std::endl;
+        }
+    }
+
+    return ExitAskAction;
+}
+
 int main()
 {
-    std::cout << "0 = exit, 1-15 = make a move if valid" << std::endl;
-    Game TheGame(4);
+    Menu TheMenu;
+    bool ExitAsk = false;
+    while(!ExitAsk)
+    {
+        ExitAsk = TheMenu.AskAction();
+    }
+
+
+/*
+    std::cout << "0 = exit, # = make a move if valid" << std::endl;
+    Game TheGame(5);
     bool ExitAsk = false;
     while(!ExitAsk)
     {
         TheGame.DisplayBox();
         ExitAsk = TheGame.AskMove();
     }
+*/
 }

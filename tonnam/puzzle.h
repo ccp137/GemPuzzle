@@ -14,3 +14,13 @@ private:
     std::vector<int> VacCoord;
     int Dim;
 };
+
+class Menu
+{
+public:
+    Menu(); // Default constructor
+    bool AskAction();
+
+private:
+    std::vector< Game > GameVector;
+};
