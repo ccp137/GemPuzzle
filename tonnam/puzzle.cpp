@@ -1,5 +1,9 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>    // std::random_shuffle
+#include <cstdlib>      // std::srand
+#include <ctime>        // std::time
+
 #include "puzzle.h"
 
 Game::Game(int NDim)
@@ -8,6 +12,9 @@ Game::Game(int NDim)
     {
         OneDList.push_back(i);
     };
+
+    std::srand ( unsigned ( std::time(0) ) ); // Generate random seed
+    std::random_shuffle( OneDList.begin(), OneDList.end() ); // Random shuffle OneDList
 
     for(int i = 0; i < NDim; ++i) // Create empty 2-d vector
     {
