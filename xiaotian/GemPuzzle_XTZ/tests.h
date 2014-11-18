@@ -7,3 +7,5 @@
 #pragma once
 
 void testPuzzle();
+
+void testGame();

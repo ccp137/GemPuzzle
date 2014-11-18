@@ -177,8 +177,8 @@ void Puzzle::RandomSet(){
     entries[Nrow*Ncol-1] = 0;
     entries[Nrow*Ncol] = 0;
 
-    /* initialize random seed: */
-    srand (time(NULL));
+    /* initialize random seed:*/
+    srand(time(NULL));
 
     std::random_shuffle(entries, entries + Nrow*Ncol);
     int index = 0;

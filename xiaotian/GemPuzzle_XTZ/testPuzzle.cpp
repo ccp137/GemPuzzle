@@ -8,6 +8,7 @@
 #include "Puzzle.h"
 
 void testPuzzle(){
+    std::cout << "Tests for Puzzle:" << std::endl;
     // testing IsDefault()
     std::cout << "0. testing IsDefault():" << std::endl;
     Puzzle myPuzzleNeg1(3,3);

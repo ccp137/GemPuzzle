@@ -13,7 +13,7 @@ class Game{
 
     public:
         // default & init constructor
-        Game();
+        Game(int nrow = 4, int ncol = 4);
 
         // copy constructor
         Game(const Game& source);
@@ -25,7 +25,7 @@ class Game{
         Game& operator = (const Game& source);
 
         // get GameNumber
-        int GetGameNumber() const;
+        int GetGameID() const;
 
         // get InitialPuzzle
         Puzzle* GetInitialPuzzle() const;
@@ -35,6 +35,12 @@ class Game{
 
         // get MoveHistory
         std::vector<MoveDirect> GetMoveHistory() const;
+
+        // get TotalNumber
+        int GetTotalNumber() const;
+
+        // get EverCreated
+        int GetEverCreated() const;
 
         // let user play the game
         void MoveInterface();
@@ -57,9 +63,11 @@ class Game{
 
     // member fields
     private:
-        int GameNumber;
+        int GameID;
         Puzzle* InitialPuzzle;
         Puzzle* CurrentPuzzle;
         std::vector<MoveDirect> MoveHistory;
+        static int TotalNumber;
+        static int EverCreated;
 
-}
+};

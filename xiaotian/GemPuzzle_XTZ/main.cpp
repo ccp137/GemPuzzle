@@ -6,13 +6,20 @@
 
 #include <iostream>
 #include "Puzzle.h"
+#include "Game.h"
 #include "tests.h"
+#include <time.h>
 
 using namespace std;
 
 int main()
 {
-    testPuzzle();
+    /* initialize random seed:
+    srand(time(NULL));*/
+
+    //testPuzzle();
+
+    testGame();
 
     return 0;
 }
