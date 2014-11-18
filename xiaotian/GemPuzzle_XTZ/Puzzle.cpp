@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <cmath>
 #include <algorithm>
-#include <time.h>
+//#include <time.h>
 #include "Puzzle.h"
 
 // default & init constructor
@@ -227,7 +227,7 @@ void Puzzle::Display() const {
 }
 
 // swap blank space and a nearby entry
-void Puzzle::Swap(MoveDirect thisDirect){
+bool Puzzle::Swap(MoveDirect thisDirect){
     int temp;
     switch(thisDirect){
         case BLANK_UP:
@@ -236,7 +236,10 @@ void Puzzle::Swap(MoveDirect thisDirect){
                 Entries[Vblank-1][Hblank] = Nrow*Ncol;
                 Entries[Vblank][Hblank] = temp;
                 Vblank -= 1;
-            }else{}
+            }else{
+                cout << endl << "Invalid move!" << endl;
+                return false;
+            }
             break;
         case BLANK_DOWN:
             if(Vblank != (Nrow-1)){
@@ -244,7 +247,10 @@ void Puzzle::Swap(MoveDirect thisDirect){
                 Entries[Vblank+1][Hblank] = Nrow*Ncol;
                 Entries[Vblank][Hblank] = temp;
                 Vblank += 1;
-            }else{}
+            }else{
+                cout << endl << "Invalid move!" << endl;
+                return false;
+            }
             break;
         case BLANK_LEFT:
             if(Hblank != 0){
@@ -252,7 +258,10 @@ void Puzzle::Swap(MoveDirect thisDirect){
                 Entries[Vblank][Hblank-1] = Nrow*Ncol;
                 Entries[Vblank][Hblank] = temp;
                 Hblank -= 1;
-            }else{}
+            }else{
+                cout << endl << "Invalid move!" << endl;
+                return false;
+            }
             break;
         case BLANK_RIGHT:
             if(Hblank != (Ncol-1)){
@@ -260,10 +269,28 @@ void Puzzle::Swap(MoveDirect thisDirect){
                 Entries[Vblank][Hblank+1] = Nrow*Ncol;
                 Entries[Vblank][Hblank] = temp;
                 Hblank += 1;
-            }else{}
+            }else{
+                cout << endl << "Invalid move!" << endl;
+                return false;
+            }
             break;
         default:;
     }
+    return true;
+}
+
+// function to determine solvability
+// chengping
+bool Puzzle::IsSovable(){
+        // need to fill out
+        return true;
+}
+
+// check if Puzzle is same as default
+// chengping
+bool IsDefault(){
+    Puzzle tempPuzzle(Nrow, Ncol);
+    return tempPuzzle == *this;
 }
 
 

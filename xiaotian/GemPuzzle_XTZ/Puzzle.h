@@ -53,13 +53,21 @@ class Puzzle{
         void Display() const;
 
         // swap blank space and a nearby entry
-        void Swap(MoveDirect thisDirect);
+        bool Swap(MoveDirect thisDirect);
 
         // randomly permute all entries
         void RandomSet();
 
         // let user set the entries
         void ByUser();
+
+        // function to determine solvability
+        bool IsSovable();
+
+        // check if Puzzle is same as default
+        // chengping
+        bool IsDefault();
+
 
 
     private:

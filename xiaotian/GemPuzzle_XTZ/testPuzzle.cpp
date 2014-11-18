@@ -110,6 +110,7 @@ void testPuzzle(){
     myPuzzle5b.Display();
     std::cout << std::endl;
     std::cin.ignore();
+    std::cin.get();
 
     // testing Puzzle::operator ==
     std::cout << "10. testing Puzzle::operator ==" << std::endl;
