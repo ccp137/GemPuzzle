@@ -5,18 +5,57 @@ Gem Puzzle is a sliding puzzle that consists of a frame of numbered square tiles
 ## Blueprint
 ```
   class Puzzle
-    Description: define the basic data tructure 
+    Description: define the basic data structure
     Objective:
     Variables:
+      int Nrow;
+      int Ncol;
+      int Vblank;
+      int Hblank;
+      int ** Entries;
     Functions:
-
+      Puzzle(int nrow = 4, int ncol = 4);
+      Puzzle(int nrow, int ncol, int* entries);
+      Puzzle(const Puzzle& source);
+      ~Puzzle();
+      Puzzle& operator = (const Puzzle& source);
+      bool operator == (const Puzzle& compareTo) const;
+      int GetNrow() const;
+      int GetNcol() const;
+      int GetVblank() const;
+      int GetHblank() const;
+      int** GetEntries() const;
+      void SetEntries(int* entries);
+      void Display() const;
+      bool Swap(MoveDirect thisDirect);
+      void RandomSet();
+      void ByUser();
+      bool IsSovable();
+      bool IsDefault();
   class Game
-    Description:
+    Description: Play the game and keep track of the moves
     Objective:
     Variables:
+      int GameNumber;
+      Puzzle* InitialPuzzle;
+      Puzzle* CurrentPuzzle;
+      std::vector<MoveDirect> MoveHistory;
     Functions:
-
-  class Solution:
+      Game();
+      Game(const Game& source);
+      ~Game();
+      Game& operator = (const Game& source);
+      int GetGameNumber() const;
+      Puzzle* GetInitialPuzzle() const;
+      Puzzle* GetCurrentPuzzle() const;
+      std::vector<MoveDirect> GetMoveHistory() const;
+      void MoveInterface();
+      bool IsWin() const;
+      Puzzle Trace(int postion) const;
+      void Undo(int numStep);
+      Game SolveIt() const;
+      void Display() const;
+  class Menu:
     Description:
     Objective:
     Variables:
@@ -27,19 +66,19 @@ Gem Puzzle is a sliding puzzle that consists of a frame of numbered square tiles
 ## Things to do
 
 * class Puzzle
-	a) code blank space by 0 (xiaotian)
-	b) implement the IsSolvable() function (chengping)
-	c) add checking to ByUser() function according to the dimensions (xiaotian)
-	d) maybe later adding distance function to facilitate SolveIt() (can wait)
-	e) bool IsDefault(need to be tested)
+	1. code blank space by 0 (xiaotian)
+	2. implement the IsSolvable() function (chengping)
+	3. add checking to ByUser() function according to the dimensions (xiaotian)
+	4. maybe later adding distance function to facilitate SolveIt() (can wait)
+	5. bool IsDefault(need to be tested)
 * class Game
-	a) basic features (xiaotian)
-	b) other staff by chengping and tonnam (please see comments)
-	c) think about proving more moving options (tonnam)
-	
+	1. basic features (xiaotian)
+	2. other staff by chengping and tonnam (please see comments)
+	3. think about proving more moving options (tonnam)
+
 * class Menu
-	a) scketch up the plan for Menu (tonnam)
-	
+	1. scketch up the plan for Menu (tonnam)
+
 
 ## Git command
 
@@ -57,7 +96,7 @@ Remove a file
 ```
 Edit a file
 ```
-    git commit -a -m "COMMENTS" 
+    git commit -a -m "COMMENTS"
 ```
 Update changes to the server
 ```
