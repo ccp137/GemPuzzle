@@ -1,10 +1,10 @@
+#pragma once
+
 //
 // Puzzle.h - Puzzle class declaration
 //
 // Written by Xiaotian Zhu
 //
-
-#pragma once
 
 enum MoveDirect {BLANK_UP, BLANK_DOWN, BLANK_LEFT, BLANK_RIGHT};
 
@@ -65,7 +65,6 @@ class Puzzle{
         bool IsSovable();
 
         // check if Puzzle is same as default
-        // chengping
         bool IsDefault();
 
 

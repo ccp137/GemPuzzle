@@ -237,7 +237,7 @@ bool Puzzle::Swap(MoveDirect thisDirect){
                 Entries[Vblank][Hblank] = temp;
                 Vblank -= 1;
             }else{
-                cout << endl << "Invalid move!" << endl;
+                std::cout << std::endl << "Invalid move!" << std::endl;
                 return false;
             }
             break;
@@ -248,7 +248,7 @@ bool Puzzle::Swap(MoveDirect thisDirect){
                 Entries[Vblank][Hblank] = temp;
                 Vblank += 1;
             }else{
-                cout << endl << "Invalid move!" << endl;
+                std::cout << std::endl << "Invalid move!" << std::endl;
                 return false;
             }
             break;
@@ -259,7 +259,7 @@ bool Puzzle::Swap(MoveDirect thisDirect){
                 Entries[Vblank][Hblank] = temp;
                 Hblank -= 1;
             }else{
-                cout << endl << "Invalid move!" << endl;
+                std::cout << std::endl << "Invalid move!" << std::endl;
                 return false;
             }
             break;
@@ -270,7 +270,7 @@ bool Puzzle::Swap(MoveDirect thisDirect){
                 Entries[Vblank][Hblank] = temp;
                 Hblank += 1;
             }else{
-                cout << endl << "Invalid move!" << endl;
+                std::cout << std::endl << "Invalid move!" << std::endl;
                 return false;
             }
             break;
@@ -282,13 +282,13 @@ bool Puzzle::Swap(MoveDirect thisDirect){
 // function to determine solvability
 // chengping
 bool Puzzle::IsSovable(){
-        // need to fill out
+        // need to be implemented
         return true;
 }
 
 // check if Puzzle is same as default
-// chengping
-bool IsDefault(){
+// chengping please check if it works
+bool Puzzle::IsDefault(){
     Puzzle tempPuzzle(Nrow, Ncol);
     return tempPuzzle == *this;
 }

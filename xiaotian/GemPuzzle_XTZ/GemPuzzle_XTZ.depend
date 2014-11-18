@@ -4,14 +4,13 @@
 	"Puzzle.h"
 	"tests.h"
 
-1415285343 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.h
+1416279507 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.h
 
-1415326089 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.cpp
+1416280195 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.cpp
 	<iostream>
 	<iomanip>
 	<cmath>
 	<algorithm>
-	<time.h>
 	"Puzzle.h"
 
 1415326202 source:/home/xiaotian/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/main.cpp
@@ -32,7 +31,7 @@
 
 1415217126 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/tests.h
 
-1415325440 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/testPuzzle.cpp
+1415328362 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/testPuzzle.cpp
 	<iostream>
 	"Puzzle.h"
 
@@ -45,4 +44,6 @@
 	"Game.h"
 
 1416260022 /home/xiaotian/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Game.h
+
+1416280077 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Game.cpp
 

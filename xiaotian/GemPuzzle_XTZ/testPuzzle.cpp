@@ -8,6 +8,20 @@
 #include "Puzzle.h"
 
 void testPuzzle(){
+    // testing IsDefault()
+    std::cout << "0. testing IsDefault():" << std::endl;
+    Puzzle myPuzzleNeg1(3,3);
+    myPuzzleNeg1.Display();
+    std::cout << std::endl << myPuzzleNeg1.IsDefault() << std::endl;
+    myPuzzleNeg1.RandomSet();
+    myPuzzleNeg1.Display();
+    std::cout << std::endl << myPuzzleNeg1.IsDefault() << std::endl;
+    int resetArray[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    myPuzzleNeg1.SetEntries(resetArray);
+    myPuzzleNeg1.Display();
+    std::cout << std::endl << myPuzzleNeg1.IsDefault() << std::endl;
+    std::cin.ignore();
+
     // testing default constructor
     std::cout << "1. testing default constructor:" << std::endl;
     Puzzle myPuzzle0;

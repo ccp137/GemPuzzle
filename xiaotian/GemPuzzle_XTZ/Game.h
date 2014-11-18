@@ -1,3 +1,5 @@
+#pragma once
+
 //
 // Game.h - Game class declaration
 //
@@ -7,16 +9,11 @@
 #include "Puzzle.h"
 #include <vector>
 
-#pragma once
-
 class Game{
 
     public:
         // default & init constructor
         Game();
-
-        //// init constructor version 2
-        //Game();
 
         // copy constructor
         Game(const Game& source);
@@ -30,14 +27,14 @@ class Game{
         // get GameNumber
         int GetGameNumber() const;
 
-        // get MyPuzzle
-        //...
+        // get InitialPuzzle
+        Puzzle* GetInitialPuzzle() const;
+
+        // get CurrentPuzzle
+        Puzzle* GetCurrentPuzzle() const;
 
         // get MoveHistory
-        // ...
-
-        // get CurrentPosition
-        // ...
+        std::vector<MoveDirect> GetMoveHistory() const;
 
         // let user play the game
         void MoveInterface();
@@ -45,13 +42,10 @@ class Game{
         // decide if user wins already
         bool IsWin() const;
 
-        // save to the MoveHistory
-        void SaveHistory();
-
         // return puzzle configuration at position in history
         Puzzle Trace(int postion) const;
 
-        // undo this numStep # of steps
+        // undo numStep # of steps
         void Undo(int numStep);
 
         // solve it by computer
@@ -61,15 +55,11 @@ class Game{
         void Display() const;
 
 
-
-
-
     // member fields
     private:
         int GameNumber;
-        Puzzle InitialPuzzle;
-        Puzzle CurrentPuzzle;
+        Puzzle* InitialPuzzle;
+        Puzzle* CurrentPuzzle;
         std::vector<MoveDirect> MoveHistory;
-        //int CurrentPosition; // total number of effective elements in MoveHistory
 
 }
