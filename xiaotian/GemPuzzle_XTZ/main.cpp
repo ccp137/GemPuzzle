@@ -14,10 +14,8 @@ using namespace std;
 
 int main()
 {
-    /* initialize random seed:
-    srand(time(NULL));*/
 
-    //testPuzzle();
+    testPuzzle();
 
     testGame();
 
