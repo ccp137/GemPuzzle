@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <time.h>
 #include "Puzzle.h"
+#include <limits>
 
 // default & init constructor
 Puzzle::Puzzle(int nrow, int ncol){
@@ -208,8 +209,20 @@ void Puzzle::ByUser(){
         for(int j = 0; j < Ncol; j++){
             do{
                 somethingWrong = false;
-                std::cout << "[" << i << "][" << j << "]:  ";
-                std::cin >> tempEntries[tempIndex];
+
+                for (;;) {
+                    std::cout << "[" << i << "][" << j << "]:  ";
+                    if (std::cin >> tempEntries[tempIndex]) {
+                        break;
+                    } else {
+                        std::cout << std::endl << "Please enter a valid integer within [" << 0 << ", " << Nrow*Ncol-1 << "]" << std::endl;
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    }
+                }
+
+
+
                 if(tempEntries[tempIndex] < 0 || tempEntries[tempIndex] >= Nrow*Ncol){
                     std::cout << std::endl << "Out of bounds!" << std::endl;
                     somethingWrong = true;
