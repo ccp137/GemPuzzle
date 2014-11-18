@@ -16,7 +16,7 @@ void testPuzzle(){
     myPuzzleNeg1.RandomSet();
     myPuzzleNeg1.Display();
     std::cout << std::endl << myPuzzleNeg1.IsDefault() << std::endl;
-    int resetArray[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int resetArray[] = {1, 2, 3, 4, 5, 6, 7, 8, 0};
     myPuzzleNeg1.SetEntries(resetArray);
     myPuzzleNeg1.Display();
     std::cout << std::endl << myPuzzleNeg1.IsDefault() << std::endl;
@@ -36,7 +36,7 @@ void testPuzzle(){
 
     // testing init constructor version 2
     std::cout << "3. testing init constructor versioin 2:" << std::endl;
-    int thisArray[] = {2, 1, 7, 13, 12, 11, 16, 15, 3, 4, 5, 6, 8, 9, 10, 14, 17, 18, 19, 24, 20, 21, 22, 23};
+    int thisArray[] = {2, 1, 7, 13, 12, 11, 16, 15, 3, 4, 5, 6, 8, 9, 10, 14, 17, 18, 19, 0, 20, 21, 22, 23};
     Puzzle myPuzzle2(4,6,thisArray);
     myPuzzle2.Display();
     std::cin.ignore();
@@ -68,7 +68,7 @@ void testPuzzle(){
     std::cout << "7. testing SetEntries():" << std::endl;
     Puzzle myPuzzle4(3,2);
     myPuzzle4.Display();
-    int thatArray[] = {5, 6, 1, 4, 3, 2};
+    int thatArray[] = {5, 0, 1, 4, 3, 2};
     myPuzzle4.SetEntries(thatArray);
     myPuzzle4.Display();
     std::cin.ignore();
@@ -129,12 +129,12 @@ void testPuzzle(){
     // testing Puzzle::operator ==
     std::cout << "10. testing Puzzle::operator ==" << std::endl;
     Puzzle myPuzzle7(2,2);
-    int tempArray1[] = {3,4,1,2};
+    int tempArray1[] = {3,0,1,2};
     myPuzzle7.SetEntries(tempArray1);
     myPuzzle7.Display();
 
     Puzzle myPuzzle8(2,2);
-    int tempArray2[] = {4,3,1,2};
+    int tempArray2[] = {0,3,1,2};
     myPuzzle8.SetEntries(tempArray2);
     myPuzzle8.Display();
 

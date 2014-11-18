@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <cmath>
 #include <algorithm>
-//#include <time.h>
+#include <time.h>
 #include "Puzzle.h"
 
 // default & init constructor
@@ -26,6 +26,8 @@ Puzzle::Puzzle(int nrow, int ncol){
             Entries[i][j] = i*Ncol + j + 1;
         }
     }
+
+    Entries[Nrow-1][Ncol-1] = 0;
 
     Vblank = Nrow - 1;
     Hblank = Ncol - 1;
@@ -45,7 +47,7 @@ Puzzle::Puzzle(int nrow, int ncol, int* entries){
     for(int i = 0; i< Nrow; i++){
         for(int j = 0; j < Ncol; j++){
             Entries[i][j] = entries[index];
-            if (Entries[i][j] == Nrow * Ncol){
+            if (Entries[i][j] == 0){
                 Vblank = i;
                 Hblank = j;
             }
@@ -156,7 +158,7 @@ void Puzzle::SetEntries(int* entries){
     for(int i = 0; i < Nrow; i++){
         for(int j = 0; j < Ncol; j++){
             Entries[i][j] = entries[index];
-            if (Entries[i][j] == Nrow * Ncol){
+            if (Entries[i][j] == 0){
                 Vblank = i;
                 Hblank = j;
             }
@@ -171,6 +173,7 @@ void Puzzle::RandomSet(){
     for(int i = 0; i < (Nrow*Ncol); i++){
         entries[i] = i + 1;
     }
+    entries[Nrow*Ncol-1] = 0;
     entries[Nrow*Ncol] = 0;
 
     /* initialize random seed: */
@@ -181,7 +184,7 @@ void Puzzle::RandomSet(){
     for(int i = 0; i < Nrow; i++){
         for(int j = 0; j < Ncol; j++){
             Entries[i][j] = entries[index];
-            if (Entries[i][j] == Nrow * Ncol){
+            if (Entries[i][j] == 0){
                 Vblank = i;
                 Hblank = j;
             }
@@ -199,7 +202,7 @@ void Puzzle::ByUser(){
         for(int j = 0; j < Ncol; j++){
             std::cout << "[" << i << "][" << j << "]:  ";
             std::cin >> Entries[i][j];
-            if (Entries[i][j] == Nrow * Ncol){
+            if (Entries[i][j] == 0){
                 Vblank = i;
                 Hblank = j;
             }
@@ -233,7 +236,7 @@ bool Puzzle::Swap(MoveDirect thisDirect){
         case BLANK_UP:
             if(Vblank != 0){
                 temp = Entries[Vblank-1][Hblank];
-                Entries[Vblank-1][Hblank] = Nrow*Ncol;
+                Entries[Vblank-1][Hblank] = 0;
                 Entries[Vblank][Hblank] = temp;
                 Vblank -= 1;
             }else{
@@ -244,7 +247,7 @@ bool Puzzle::Swap(MoveDirect thisDirect){
         case BLANK_DOWN:
             if(Vblank != (Nrow-1)){
                 temp = Entries[Vblank+1][Hblank];
-                Entries[Vblank+1][Hblank] = Nrow*Ncol;
+                Entries[Vblank+1][Hblank] = 0;
                 Entries[Vblank][Hblank] = temp;
                 Vblank += 1;
             }else{
@@ -255,7 +258,7 @@ bool Puzzle::Swap(MoveDirect thisDirect){
         case BLANK_LEFT:
             if(Hblank != 0){
                 temp = Entries[Vblank][Hblank-1];
-                Entries[Vblank][Hblank-1] = Nrow*Ncol;
+                Entries[Vblank][Hblank-1] = 0;
                 Entries[Vblank][Hblank] = temp;
                 Hblank -= 1;
             }else{
@@ -266,7 +269,7 @@ bool Puzzle::Swap(MoveDirect thisDirect){
         case BLANK_RIGHT:
             if(Hblank != (Ncol-1)){
                 temp = Entries[Vblank][Hblank+1];
-                Entries[Vblank][Hblank+1] = Nrow*Ncol;
+                Entries[Vblank][Hblank+1] = 0;
                 Entries[Vblank][Hblank] = temp;
                 Hblank += 1;
             }else{
