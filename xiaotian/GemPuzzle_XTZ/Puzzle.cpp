@@ -198,10 +198,37 @@ void Puzzle::RandomSet(){
 // let user set the entries
 void Puzzle::ByUser(){
     std::cout << "Please enter the entries for this " << Nrow << " x " << Ncol << " gem puzzle." << std::endl;
+    int* tempEntries = new int[Nrow*Ncol];
+    for (int i = 0; i < Nrow*Ncol; i++){
+        tempEntries[i] = -1;
+    }
+    int tempIndex = 0;
+    bool somethingWrong;
     for(int i = 0; i < Nrow; i++){
         for(int j = 0; j < Ncol; j++){
-            std::cout << "[" << i << "][" << j << "]:  ";
-            std::cin >> Entries[i][j];
+            do{
+                somethingWrong = false;
+                std::cout << "[" << i << "][" << j << "]:  ";
+                std::cin >> tempEntries[tempIndex];
+                if(tempEntries[tempIndex] < 0 || tempEntries[tempIndex] >= Nrow*Ncol){
+                    std::cout << std::endl << "Out of bounds!" << std::endl;
+                    somethingWrong = true;
+                }else{
+                    for(int k = 0; k < tempIndex; k++){
+                        if(tempEntries[tempIndex] == tempEntries[k]){
+                            std::cout << std::endl << "Same value entered before!" << std::endl;
+                            somethingWrong = true;
+                            break;
+                        }
+                    }
+                }
+
+            }while(somethingWrong);
+
+            Entries[i][j] = tempEntries[tempIndex];
+
+            tempIndex++;
+
             if (Entries[i][j] == 0){
                 Vblank = i;
                 Hblank = j;
