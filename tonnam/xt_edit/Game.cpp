@@ -71,8 +71,6 @@ bool IsWin() const{
         CurrentPuzzle.IsDefault();
 }
 
-void SaveHistory() {}
-
 // return puzzle configuration at position in history
 // chengping
 Puzzle Trace(int postion) const{}
