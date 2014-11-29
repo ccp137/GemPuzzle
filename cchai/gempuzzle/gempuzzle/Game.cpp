@@ -141,7 +141,6 @@ void Game::MoveInterface(){
 }
 
 // decide if user wins already
-// chengping please test
 bool Game::IsWin() const{
     return
         CurrentPuzzle -> IsDefault();
@@ -149,7 +148,16 @@ bool Game::IsWin() const{
 
 //// return puzzle configuration at position in history
 //// chengping
-//Puzzle Game::Trace(int postion) const{}
+Puzzle Game::Trace(int postion) const{
+    MoveDirect thisDirect;
+    Puzzle thisPuzzle;
+    thisPuzzle = *(GetInitialPuzzle());
+    for (int i; i<=postion; i++) {
+        thisDirect = MoveHistory[i];
+        thisPuzzle.Swap(thisDirect);
+    }
+    return thisPuzzle;
+}
 
 //// undo this numStep # of steps
 //// tonname

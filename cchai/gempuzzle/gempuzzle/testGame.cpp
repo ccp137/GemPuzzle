@@ -10,7 +10,7 @@
 void testGame(){
     std::cout << "Tests for Game:" << std::endl;
     // testing constructors etc.
-    std::cout << "0. testing constructors etc.:" << std::endl;
+    /* std::cout << "0. testing constructors etc.:" << std::endl;
     Game firstGame(3,3);
     Game secondGame = firstGame;
     Game thirdGame(3,3);
@@ -26,5 +26,10 @@ void testGame(){
     thirdGame.Display();
     Game fifthGame;
     std::cout << std::endl << fifthGame.IsWin() << std::endl;
+     */
+    // test IsWin()
+    Game testOne(3,3);
+    testOne.Display();
+    std::cout << std::endl << testOne.IsWin() << std::endl;
 
 }
