@@ -37,6 +37,7 @@
 		<Unit filename="Puzzle.cpp" />
 		<Unit filename="Puzzle.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="testGame.cpp" />
 		<Unit filename="testPuzzle.cpp" />
 		<Unit filename="tests.h" />
 		<Extensions>

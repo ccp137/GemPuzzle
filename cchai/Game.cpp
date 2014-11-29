@@ -147,17 +147,9 @@ bool Game::IsWin() const{
         CurrentPuzzle -> IsDefault();
 }
 
-<<<<<<< HEAD
-void SaveHistory() {}
-
-// return puzzle configuration at position in history
-// chengping
-Puzzle Trace(int postion) const{}
-=======
 //// return puzzle configuration at position in history
 //// chengping
 //Puzzle Game::Trace(int postion) const{}
->>>>>>> origin/master
 
 //// undo this numStep # of steps
 //// tonname
