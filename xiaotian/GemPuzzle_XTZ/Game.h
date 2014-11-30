@@ -55,7 +55,7 @@ class Game{
         void Undo(int numStep);
 
         // solve it by computer
-        Game SolveIt() const;
+        void SolveIt();
 
         // display info for the Game
         void Display() const;

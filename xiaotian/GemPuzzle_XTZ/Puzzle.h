@@ -61,12 +61,17 @@ class Puzzle{
         // let user set the entries
         void ByUser();
 
+        // count number of inversions
+        int CountInversions(int irow, int icol);
+
+        // sum number of inversions
+        int SumInversions();
+
         // function to determine solvability
         bool IsSovable();
 
         // check if Puzzle is same as default
         bool IsDefault();
-
 
 
     private:

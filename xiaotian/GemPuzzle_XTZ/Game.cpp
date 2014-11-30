@@ -155,9 +155,11 @@ bool Game::IsWin() const{
 //// tonname
 //void Game::Undo(int numStep){}
 
-//// solve it by computer
-//// let's all think about it
-//Game SolveIt() const{}
+// solve it by computer
+// let's all think about it
+void Game::SolveIt() {
+
+}
 
 // display info for the Game
 // tonname please test
