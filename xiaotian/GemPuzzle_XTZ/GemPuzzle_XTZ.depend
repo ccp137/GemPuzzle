@@ -49,16 +49,6 @@
 
 1416260022 /home/xiaotian/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Game.h
 
-<<<<<<< HEAD
-1416076752 source:c:\users\tonnam\documents\github\gempuzzle\xiaotian\gempuzzle_xtz\main.cpp
-	<iostream>
-	"Puzzle.h"
-	"tests.h"
-
-1416270322 c:\users\tonnam\documents\github\gempuzzle\xiaotian\gempuzzle_xtz\puzzle.h
-
-1416076752 c:\users\tonnam\documents\github\gempuzzle\xiaotian\gempuzzle_xtz\tests.h
-=======
 1416338843 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Game.cpp
 	<iostream>
 	"Game.h"
@@ -71,5 +61,4 @@
 1416338944 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/testGame.cpp
 	<iostream>
 	"Game.h"
->>>>>>> origin/master
 
