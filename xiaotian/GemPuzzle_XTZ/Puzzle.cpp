@@ -11,6 +11,7 @@
 #include <time.h>
 #include "Puzzle.h"
 #include <limits>
+#include <complex>
 
 // default & init constructor
 Puzzle::Puzzle(int nrow, int ncol){
@@ -323,7 +324,7 @@ bool Puzzle::Swap(MoveDirect thisDirect){
 }
 
 // count number of inversions
-int Puzzle::CountInversions(int irow, int icol){
+int Puzzle::CountInversions(int irow, int icol) const{
     int inversions = 0;
     int currentIndex = irow * Ncol + icol;
     int lastIndex = Ncol*Nrow;
@@ -342,7 +343,7 @@ int Puzzle::CountInversions(int irow, int icol){
 }
 
 // sum number of inversions
-int Puzzle::SumInversions(){
+int Puzzle::SumInversions() const{
     int inversions = 0;
     for (int irow=0; irow < Nrow; irow++) {
         for (int icol=0; icol < Ncol; icol++) {
@@ -353,7 +354,7 @@ int Puzzle::SumInversions(){
 }
 
 // function to determine solvability
-bool Puzzle::IsSovable(){
+bool Puzzle::IsSolvable() const{
     if (Ncol % 2 == 1) {
         return (SumInversions() % 2 == 0);
     }
@@ -364,11 +365,26 @@ bool Puzzle::IsSovable(){
 
 // check if Puzzle is same as default
 // chengping please check if it works
-bool Puzzle::IsDefault(){
+bool Puzzle::IsDefault() const{
     Puzzle tempPuzzle(Nrow, Ncol);
     return tempPuzzle == *this;
 }
 
-// function to solve a puzzle
-
+// manhattan distance between *this and default
+int Puzzle::Heuristic() const{
+    int heuristic = 0;
+    int i,j, i_, j_;
+    int cellValue;
+    for(i = 0; i < Nrow; i++){
+        for(j = 0; j < Ncol; j++){
+            cellValue = Entries[i][j];
+            if(cellValue != 0){
+                i_ = (cellValue-1) / Ncol;
+                j_ = (cellValue-1) % Ncol;
+                heuristic += std::abs(i-i_) + std::abs(j-j_);
+            }
+        }
+    }
+    return heuristic;
+}
 

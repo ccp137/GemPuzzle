@@ -6,10 +6,36 @@
 
 #include <iostream>
 #include "Game.h"
+#include "PuzzleSearchNode.h"
 #include <limits>
+
+#define FOUND -100
+#define NOTFOUND -200
+#define MAXBOUND std::numeric_limits<int>::max()
 
 int Game::TotalNumber=0; // initialization of Game::TotalNumber
 int Game::EverCreated=0; // initialization of Game::EverCreated
+
+// Global output for enum MoveDirect
+void DisplayMoveDirect(MoveDirect myMove)
+{
+	switch(myMove){
+        case BLANK_UP:
+            std::cout << "U ";
+            break;
+        case BLANK_DOWN:
+            std::cout << "D ";
+            break;
+        case BLANK_LEFT:
+            std::cout << "L ";
+            break;
+        case BLANK_RIGHT:
+            std::cout << "R ";
+            break;
+        default:;
+	}
+
+}
 
 // default & init constructor
 // xiaotian
@@ -155,10 +181,66 @@ bool Game::IsWin() const{
 //// tonname
 //void Game::Undo(int numStep){}
 
+
+// search function for IDA*
+int Game::Search(PuzzleSearchNode& thisNode, int boundValue, PuzzleSearchNode& leafNode){
+    if(thisNode.F > boundValue){
+        return thisNode.F;
+    }
+    if(thisNode.PuzzleToSolve.IsDefault()){
+        leafNode = thisNode;
+
+        //need to backtrack here!
+        std::vector<MoveDirect> tempHistory;
+        while(thisNode.Parent != NULL){
+            tempHistory.push_back(thisNode.GetHere);
+            thisNode = *(thisNode.Parent);
+        }
+        std::vector<MoveDirect>::reverse_iterator rit = tempHistory.rbegin();
+        for (; rit!= tempHistory.rend(); ++rit) MoveHistory.push_back(*rit);
+
+        return FOUND;
+    }
+    int minBound = MAXBOUND, redundant = 0;
+    MoveDirect aMove;
+    for(redundant = 0 ; redundant < 4; redundant++)
+    {
+        aMove = MoveDirect(redundant);
+        Puzzle copyThisPuzzle = thisNode.PuzzleToSolve;
+        if(copyThisPuzzle.Swap(aMove)){
+            PuzzleSearchNode nextNode(copyThisPuzzle, thisNode.G+1);
+            nextNode.Parent = &thisNode;
+            nextNode.GetHere = aMove;
+            int thisT = Search(nextNode, boundValue, leafNode);
+            if (thisT == FOUND){
+                return FOUND;
+            }
+            if (thisT < minBound){
+                minBound = thisT;
+            }
+        }
+    }
+    return minBound;
+}
+
 // solve it by computer
 // let's all think about it
-void Game::SolveIt() {
-
+int Game::SolveIt() {
+    PuzzleSearchNode root(*CurrentPuzzle, 0);
+    PuzzleSearchNode leaf = root;
+    int bound = root.H;
+    int t;
+    while(true){
+        t = Search(root, bound, leaf);
+        if(t == FOUND) {
+            *CurrentPuzzle = leaf.PuzzleToSolve;
+            // also will need to backtrack(where?) to get the steps
+            // later ...
+            return FOUND;
+        }
+        if(t == MAXBOUND) return NOTFOUND;
+        bound = t;
+    }
 }
 
 // display info for the Game
@@ -170,7 +252,7 @@ void Game::Display() const{
     std::cout << std::endl << "MoveHistory:";
     if(MoveHistory.size() == 0) std::cout << "  None.";
     for(int i = 0; i < MoveHistory.size(); i++){
-        std::cout << MoveHistory[i];
+        DisplayMoveDirect(MoveHistory[i]);
     }
     std::cout << std::endl;
     std::cout << std::endl << "CurrentPuzzle:" << std::endl;
