@@ -241,10 +241,25 @@ void Game::Display() const{
     std::cout << std::endl << "GameID:    " << GameID << std::endl;
     std::cout << std::endl << "InitialPuzzle:" << std::endl;
     InitialPuzzle -> Display();
-    std::cout << std::endl << "MoveHistory (0=up,1=down,2=left,3=right):";
+    std::cout << std::endl << "MoveHistory (U=up,D=down,L=left,R=right):";
     if(MoveHistory.size() == 0) std::cout << "  None.";
     for(unsigned int i = 0; i < MoveHistory.size(); i++){
-        std::cout << MoveHistory[i];
+        switch(MoveHistory[i])
+        {
+        case BLANK_DOWN:
+            std::cout << 'D';
+            break;
+        case BLANK_LEFT:
+            std::cout << 'L';
+            break;
+        case BLANK_RIGHT:
+            std::cout << 'R';
+            break;
+        case BLANK_UP:
+            std::cout << 'U';
+            break;
+        }
+        //std::cout << MoveHistory[i];
     }
     std::cout << std::endl;
     std::cout << std::endl << "CurrentPuzzle:" << std::endl;
