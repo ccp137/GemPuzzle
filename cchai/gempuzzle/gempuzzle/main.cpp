@@ -17,7 +17,7 @@ int main()
 
     testPuzzle();
 
-    testGame();
+    //testGame();
 
     return 0;
 }

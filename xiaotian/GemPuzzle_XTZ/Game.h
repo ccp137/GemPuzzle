@@ -8,6 +8,7 @@
 
 #include "Puzzle.h"
 #include <vector>
+#include "PuzzleSearchNode.h"
 
 class Game{
 
@@ -54,8 +55,11 @@ class Game{
         // undo numStep # of steps
         void Undo(int numStep);
 
+        // search function for IDA*
+        int Search(PuzzleSearchNode& thisNode, int boundValue, PuzzleSearchNode& leafNode);
+
         // solve it by computer
-        Game SolveIt() const;
+        int SolveIt();
 
         // display info for the Game
         void Display() const;

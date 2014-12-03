@@ -11,6 +11,7 @@
 #include <time.h>
 #include "Puzzle.h"
 #include <limits>
+#include <complex>
 
 // default & init constructor
 Puzzle::Puzzle(int nrow, int ncol){
@@ -322,18 +323,68 @@ bool Puzzle::Swap(MoveDirect thisDirect){
     return true;
 }
 
+// count number of inversions
+int Puzzle::CountInversions(int irow, int icol) const{
+    int inversions = 0;
+    int currentIndex = irow * Ncol + icol;
+    int lastIndex = Ncol*Nrow;
+    int currentValue = Entries[irow][icol];
+    int jrow, jcol;
+    int compValue;
+    for (int i=currentIndex+1; i<lastIndex; i++) {
+        jrow = floor(i / Ncol);
+        jcol = i % Ncol;
+        compValue = Entries[jrow][jcol];
+        if (currentValue > compValue && currentIndex != (lastIndex-1) && compValue != 0) {
+            inversions++;
+        }
+    }
+    return inversions;
+}
+
+// sum number of inversions
+int Puzzle::SumInversions() const{
+    int inversions = 0;
+    for (int irow=0; irow < Nrow; irow++) {
+        for (int icol=0; icol < Ncol; icol++) {
+            inversions += CountInversions(irow,icol);
+        }
+    }
+    return inversions;
+}
+
 // function to determine solvability
-// chengping
-bool Puzzle::IsSovable(){
-        // need to be implemented
-        return true;
+bool Puzzle::IsSolvable() const{
+    if (Ncol % 2 == 1) {
+        return (SumInversions() % 2 == 0);
+    }
+    else {
+        return ((SumInversions() + Nrow - Vblank - 1) % 2 == 0);
+    }
 }
 
 // check if Puzzle is same as default
 // chengping please check if it works
-bool Puzzle::IsDefault(){
+bool Puzzle::IsDefault() const{
     Puzzle tempPuzzle(Nrow, Ncol);
     return tempPuzzle == *this;
 }
 
+// manhattan distance between *this and default
+int Puzzle::Heuristic() const{
+    int heuristic = 0;
+    int i,j, i_, j_;
+    int cellValue;
+    for(i = 0; i < Nrow; i++){
+        for(j = 0; j < Ncol; j++){
+            cellValue = Entries[i][j];
+            if(cellValue != 0){
+                i_ = (cellValue-1) / Ncol;
+                j_ = (cellValue-1) % Ncol;
+                heuristic += std::abs(i-i_) + std::abs(j-j_);
+            }
+        }
+    }
+    return heuristic;
+}
 

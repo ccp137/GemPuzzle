@@ -145,4 +145,59 @@ void testPuzzle(){
     std::cout << std::endl << (myPuzzle7 == myPuzzle8) << std::endl;
 
 
+    // testing functions used in determining solvability
+    std::cout << "11. testing functions used in determining solvability" << std::endl;
+    // testing CountInversions
+    Puzzle myPuzzle9(4,4);
+    //int thatArray3[] = {8,13,1,4,2,14,0,5,3,12,10,7,11,6,9,15};
+    //int thatArray3[] = {6,1,10,2,7,11,4,14,5,0,9,15,8,12,13,3};
+    int thatArray3[] = {12,1,10,2,7,11,4,14,5,0,9,15,8,13,6,3};
+    int temp;
+    myPuzzle9.SetEntries(thatArray3);
+    myPuzzle9.Display();
+    temp = myPuzzle9.CountInversions(0, 0);
+    std::cout << std::endl << temp << std::endl;
+    // testing SumInversions
+    temp = myPuzzle9.SumInversions();
+    std::cout << std::endl << temp << std::endl;
+    Puzzle myPuzzle10(4,4);
+    //int thatArray4[] = {8,13,1,4,2,14,10,5,3,12,0,7,11,6,9,15};
+    //int thatArray4[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,15,14,0};
+    int thatArray4[] = {12,1,10,2,7,0,4,14,5,11,9,15,8,13,6,3};
+    myPuzzle10.SetEntries(thatArray4);
+    myPuzzle10.Display();
+    temp = myPuzzle10.SumInversions();
+    std::cout << std::endl << temp << std::endl;
+    // testing IsSolvable
+    bool temp2,temp3;
+    temp2 = myPuzzle9.IsSolvable();
+    std::cout << std::endl << temp2 << std::endl;
+    temp3 = myPuzzle10.IsSolvable();
+    std::cout << std::endl << temp3 << std::endl;
+    Puzzle myPuzzle11;
+    int thatArray5[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
+    myPuzzle11.SetEntries(thatArray5);
+    myPuzzle11.Display();
+    std::cout << std::endl << myPuzzle11.IsSolvable() << std::endl;
+    int thatArray6[] = {1,2,4,3,5,0,6,7,8,10,9,11,12,13,15,14};
+    myPuzzle11.SetEntries(thatArray6);
+    myPuzzle11.Display();
+    std::cout << std::endl << myPuzzle11.IsSolvable() << std::endl;
+    int thatArray7[] = {2,10,4,8,9,6,14,12,1,5,0,15,13,7,3,11};
+    myPuzzle11.SetEntries(thatArray7);
+    myPuzzle11.Display();
+    std::cout << std::endl << myPuzzle11.IsSolvable() << std::endl;
+    int thatArray8[] = {15,12,9,14,8,2,0,4,13,1,6,11,5,10,7,3};
+    myPuzzle11.SetEntries(thatArray8);
+    myPuzzle11.Display();
+    std::cout << std::endl << myPuzzle11.IsSolvable() << std::endl;
+
+    // testing Huristic()
+    std::cout << std::endl << "testing Huristic()" << std::endl;
+    Puzzle myPuzzle12;
+    int thatArray12[] = {2,10,4,8,9,6,14,12,1,0,5,15,13,7,3,11};
+    myPuzzle12.SetEntries(thatArray12);
+    myPuzzle12.Display();
+    std::cout << std::endl << myPuzzle12.Heuristic() << std::endl;
+
 }

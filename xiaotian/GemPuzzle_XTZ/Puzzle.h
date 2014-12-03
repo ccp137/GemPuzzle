@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 //
 // Puzzle.h - Puzzle class declaration
 //
@@ -61,12 +63,20 @@ class Puzzle{
         // let user set the entries
         void ByUser();
 
+        // count number of inversions
+        int CountInversions(int irow, int icol) const;
+
+        // sum number of inversions
+        int SumInversions() const;
+
         // function to determine solvability
-        bool IsSovable();
+        bool IsSolvable() const;
 
         // check if Puzzle is same as default
-        bool IsDefault();
+        bool IsDefault() const;
 
+        // manhattan distance between *this and default
+        int Heuristic() const;
 
 
     private:

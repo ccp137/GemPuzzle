@@ -324,13 +324,43 @@ bool Puzzle::Swap(MoveDirect thisDirect){
 
 // function to determine solvability
 // chengping
+int Puzzle::CountInversions(int irow, int icol){
+    int inversions = 0;
+    int currentIndex = irow * Ncol + icol;
+    int lastIndex = Ncol*Nrow;
+    int currentValue = Entries[irow][icol];
+    int jrow, jcol;
+    int compValue;
+    for (int i=currentIndex+1; i<lastIndex; i++) {
+        jrow = floor(i / Ncol);
+        jcol = i % Ncol;
+        compValue = Entries[jrow][jcol];
+        if (currentValue > compValue && currentIndex != (lastIndex-1) && compValue != 0) {
+            inversions++;
+        }
+    }
+    return inversions;
+}
+int Puzzle::SumInversions(){
+    int inversions = 0;
+    for (int irow=0; irow < Nrow; irow++) {
+        for (int icol=0; icol < Ncol; icol++) {
+            inversions += CountInversions(irow,icol);
+        }
+    }
+    return inversions;
+}
 bool Puzzle::IsSovable(){
-        // need to be implemented
-        return true;
+    if (Ncol % 2 == 1) {
+        return (SumInversions() % 2 == 0);
+    }
+    else {
+        return ((SumInversions() + Nrow - Vblank - 1) % 2 == 0);
+    }
 }
 
 // check if Puzzle is same as default
-// chengping please check if it works
+// tested
 bool Puzzle::IsDefault(){
     Puzzle tempPuzzle(Nrow, Ncol);
     return tempPuzzle == *this;
