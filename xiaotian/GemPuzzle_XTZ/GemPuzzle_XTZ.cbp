@@ -38,8 +38,9 @@
 		<Unit filename="Puzzle.h" />
 		<Unit filename="PuzzleSearchNode.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="testGame.cpp" />
-		<Unit filename="testPuzzle.cpp" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
+		<Unit filename="tests.cpp" />
 		<Unit filename="tests.h" />
 		<Extensions>
 			<code_completion />
