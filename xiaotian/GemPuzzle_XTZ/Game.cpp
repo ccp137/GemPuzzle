@@ -6,7 +6,6 @@
 
 #include <iostream>
 #include "Game.h"
-#include "PuzzleSearchNode.h"
 #include <limits>
 
 #define FOUND -100
@@ -21,16 +20,16 @@ void DisplayMoveDirect(MoveDirect myMove)
 {
 	switch(myMove){
         case BLANK_UP:
-            std::cout << "U ";
+            std::cout << " U";
             break;
         case BLANK_DOWN:
-            std::cout << "D ";
+            std::cout << " D";
             break;
         case BLANK_LEFT:
-            std::cout << "L ";
+            std::cout << " L";
             break;
         case BLANK_RIGHT:
-            std::cout << "R ";
+            std::cout << " R";
             break;
         default:;
 	}
@@ -145,25 +144,68 @@ int Game::GetEverCreated() const {return EverCreated;}
 // xiaotian
 std::vector<MoveDirect> Game::GetMoveHistory() const{ return MoveHistory;}
 
+// push to MoveHistory
+void Game::PushToHistory(MoveDirect step){
+    MoveHistory.push_back(step);
+}
+
 // let user play the game
-// tonnam
 void Game::MoveInterface(){
-//    int choice;
-//    // a menu to let the user choose moving the blank
-//    // up, down, right, or left
-//    // or exit
-//    while(choice != 0){
-//            // call swap function
-//
-//            // if swap returns ture
-//            // update the MoveHistory
-//            // update CurrentPuzzle
-//            // check if the Puzzle has been solved
-//
-//            // a menu to let the user choose moving the blank
-//            // up, down, right, or left
-//            // or exit
-//    }
+    bool exit = false;
+    int choice;
+    while(!exit){
+        std::cout << std::endl << "Play Menu:";
+        std::cout << std::endl << "1. Left; 2. Up; 3. Down; 4. Right; 5. Game Menu." << std::endl;
+
+        for(;;){
+            if (std::cin >> choice && choice > 0 && choice < 6) {
+                break;
+            } else {
+                std::cout << std::endl << "Please enter 1, 2, 3, 4 or 5:";
+                std::cout << std::endl << "1. Left; 2. Up; 3. Down; 4. Right; 5. Game Menu." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+        }
+
+        switch(choice){
+            case 1:
+                CurrentPuzzle -> Swap(BLANK_LEFT);
+                PushToHistory(BLANK_LEFT);
+                CurrentPuzzle -> Display();
+                if(CurrentPuzzle -> IsDefault()) std::cout << std::endl << "Hooray! You are at solved position :)" << std::endl;
+                break;
+
+            case 2:
+                CurrentPuzzle -> Swap(BLANK_UP);
+                PushToHistory(BLANK_UP);
+                CurrentPuzzle -> Display();
+                if(CurrentPuzzle -> IsDefault()) std::cout << std::endl << "Hooray! You are at solved position :)" << std::endl;
+                break;
+
+            case 3:
+                CurrentPuzzle -> Swap(BLANK_DOWN);
+                PushToHistory(BLANK_DOWN);
+                CurrentPuzzle -> Display();
+                if(CurrentPuzzle -> IsDefault()) std::cout << std::endl << "Hooray! You are at solved position :)" << std::endl;
+                break;
+
+            case 4:
+                CurrentPuzzle -> Swap(BLANK_RIGHT);
+                PushToHistory(BLANK_RIGHT);
+                CurrentPuzzle -> Display();
+                if(CurrentPuzzle -> IsDefault()) std::cout << std::endl << "Hooray! You are at solved position :)" << std::endl;
+                break;
+
+            case 5:
+                std::cout << std::endl << "Current Puzzle:" << std::endl;
+                CurrentPuzzle -> Display();
+                exit = true;
+                break;
+            default:;
+        }
+
+    }
 }
 
 // decide if user wins already
@@ -177,9 +219,9 @@ bool Game::IsWin() const{
 //// chengping
 //Puzzle Game::Trace(int postion) const{}
 
-//// undo this numStep # of steps
-//// tonname
-//void Game::Undo(int numStep){}
+// undo this numStep # of steps
+// tonname
+void Game::Undo(int numStep){}
 
 
 // search function for IDA*
@@ -207,7 +249,7 @@ int Game::Search(PuzzleSearchNode& thisNode, int boundValue, PuzzleSearchNode& l
     {
         aMove = MoveDirect(redundant);
         Puzzle copyThisPuzzle = thisNode.PuzzleToSolve;
-        if(copyThisPuzzle.Swap(aMove)){
+        if(copyThisPuzzle.Swap_NoMessage(aMove)){
             PuzzleSearchNode nextNode(copyThisPuzzle, thisNode.G+1);
             nextNode.Parent = &thisNode;
             nextNode.GetHere = aMove;
@@ -226,10 +268,15 @@ int Game::Search(PuzzleSearchNode& thisNode, int boundValue, PuzzleSearchNode& l
 // solve it by computer
 // let's all think about it
 int Game::SolveIt() {
+    if(!(CurrentPuzzle->IsSolvable())){
+        return NOTFOUND;
+    }
+
     PuzzleSearchNode root(*CurrentPuzzle, 0);
     PuzzleSearchNode leaf = root;
     int bound = root.H;
     int t;
+    std::cout << std::endl << "Computer is thinking ..." << std::endl;
     while(true){
         t = Search(root, bound, leaf);
         if(t == FOUND) {
@@ -246,15 +293,15 @@ int Game::SolveIt() {
 // display info for the Game
 // tonname please test
 void Game::Display() const{
-    std::cout << std::endl << "GameID:    " << GameID << std::endl;
-    std::cout << std::endl << "InitialPuzzle:" << std::endl;
+    //std::cout << std::endl << "GameID:    " << GameID << std::endl;
+    std::cout << std::endl << "Initial Puzzle:" << std::endl;
     InitialPuzzle -> Display();
-    std::cout << std::endl << "MoveHistory:";
+    std::cout << std::endl << "Move History:";
     if(MoveHistory.size() == 0) std::cout << "  None.";
     for(int i = 0; i < MoveHistory.size(); i++){
         DisplayMoveDirect(MoveHistory[i]);
     }
     std::cout << std::endl;
-    std::cout << std::endl << "CurrentPuzzle:" << std::endl;
+    std::cout << std::endl << "Current Puzzle:" << std::endl;
     CurrentPuzzle -> Display();
 }

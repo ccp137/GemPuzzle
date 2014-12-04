@@ -323,6 +323,59 @@ bool Puzzle::Swap(MoveDirect thisDirect){
     return true;
 }
 
+// swap blank space and a nearby entry, no message for invalid moves
+bool Puzzle::Swap_NoMessage(MoveDirect thisDirect){
+    int temp;
+    switch(thisDirect){
+        case BLANK_UP:
+            if(Vblank != 0){
+                temp = Entries[Vblank-1][Hblank];
+                Entries[Vblank-1][Hblank] = 0;
+                Entries[Vblank][Hblank] = temp;
+                Vblank -= 1;
+            }else{
+                //std::cout << std::endl << "Invalid move!" << std::endl;
+                return false;
+            }
+            break;
+        case BLANK_DOWN:
+            if(Vblank != (Nrow-1)){
+                temp = Entries[Vblank+1][Hblank];
+                Entries[Vblank+1][Hblank] = 0;
+                Entries[Vblank][Hblank] = temp;
+                Vblank += 1;
+            }else{
+                //std::cout << std::endl << "Invalid move!" << std::endl;
+                return false;
+            }
+            break;
+        case BLANK_LEFT:
+            if(Hblank != 0){
+                temp = Entries[Vblank][Hblank-1];
+                Entries[Vblank][Hblank-1] = 0;
+                Entries[Vblank][Hblank] = temp;
+                Hblank -= 1;
+            }else{
+                //std::cout << std::endl << "Invalid move!" << std::endl;
+                return false;
+            }
+            break;
+        case BLANK_RIGHT:
+            if(Hblank != (Ncol-1)){
+                temp = Entries[Vblank][Hblank+1];
+                Entries[Vblank][Hblank+1] = 0;
+                Entries[Vblank][Hblank] = temp;
+                Hblank += 1;
+            }else{
+                //std::cout << std::endl << "Invalid move!" << std::endl;
+                return false;
+            }
+            break;
+        default:;
+    }
+    return true;
+}
+
 // count number of inversions
 int Puzzle::CountInversions(int irow, int icol) const{
     int inversions = 0;

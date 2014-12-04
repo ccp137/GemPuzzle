@@ -6,7 +6,6 @@
 // Written by Xiaotian Zhu
 //
 
-#include "Puzzle.h"
 #include <vector>
 #include "PuzzleSearchNode.h"
 
@@ -36,6 +35,9 @@ class Game{
 
         // get MoveHistory
         std::vector<MoveDirect> GetMoveHistory() const;
+
+        // push to MoveHistory
+        void PushToHistory(MoveDirect step);
 
         // get TotalNumber
         int GetTotalNumber() const;

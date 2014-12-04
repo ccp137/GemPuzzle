@@ -57,6 +57,9 @@ class Puzzle{
         // swap blank space and a nearby entry
         bool Swap(MoveDirect thisDirect);
 
+        // swap blank space and a nearby entry, no message for invalid moves
+        bool Swap_NoMessage(MoveDirect thisDirect);
+
         // randomly permute all entries
         void RandomSet();
 
