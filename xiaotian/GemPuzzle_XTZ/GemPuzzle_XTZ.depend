@@ -6,7 +6,7 @@
 	<time.h>
 	"menu.h"
 
-1417639423 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.h
+1417639422 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.h
 	<iostream>
 
 1417639404 source:/home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Puzzle.cpp
@@ -56,7 +56,7 @@
 	"Game.h"
 	<limits>
 
-1417660621 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Game.h
+1417833510 /home/david/LACIE/XTZ/Work/School/2014fall/aersp424/FinalProject/GemPuzzle/xiaotian/GemPuzzle_XTZ/Game.h
 	<vector>
 	"PuzzleSearchNode.h"
 

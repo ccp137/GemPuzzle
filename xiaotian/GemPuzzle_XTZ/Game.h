@@ -66,6 +66,9 @@ class Game{
         // display info for the Game
         void Display() const;
 
+		//replay through MoveHistory
+		void Replay() const;
+
 
     // member fields
     private:

@@ -34,14 +34,14 @@ void gameMenu(){
     int choice;
     while(!exit){
         std::cout << std::endl << "Game Menu:";
-        std::cout << std::endl << "1. Play; 2. Solve for Me; 3. Game Info; 4. Main Menu." << std::endl;
+        std::cout << std::endl << "1. Play; 2. Solve for Me; 3. Game Info; 4. Replay; 5. Main Menu." << std::endl;
 
         for(;;){
-            if (std::cin >> choice && choice > 0 && choice < 5) {
+            if (std::cin >> choice && choice > 0 && choice < 6) {
                 break;
             } else {
-                std::cout << std::endl << "Please enter 1, 2, 3 or 4:";
-                std::cout << std::endl << "1. Play; 2. Solve for Me; 3. Game Info; 4. Main Menu." << std::endl;
+                std::cout << std::endl << "Please enter 1, 2, 3, 4 or 5:";
+                std::cout << std::endl << "1. Play; 2. Solve for Me; 3. Game Info; 4. Replay; 5. Main Menu." << std::endl;
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
@@ -58,7 +58,7 @@ void gameMenu(){
                 if(aNewGame.SolveIt() == NOTFOUND){
                     std::cout << std::endl << "This is NOT solvable :(" << std::endl;
                 }else{
-                    std::cout << std::endl << "Solution found :) Solved game:" << std::endl;
+                    std::cout << std::endl << "Got it :) Shortest solution needs " << aNewGame.GetMoveHistory().size() << " steps. Solved game:" << std::endl;
                     aNewGame.Display();
                 }
                 break;
@@ -68,7 +68,11 @@ void gameMenu(){
                 aNewGame.Display();
                 break;
 
-            case 4:
+			case 4:
+				aNewGame.Replay();
+				break;
+
+            case 5:
                 exit = true;
                 break;
             default:;
@@ -83,14 +87,14 @@ void mainMenu(){
     int choice;
     while (!exit){
         std::cout << std::endl << "Main Menu:";
-        std::cout << std::endl << "1. Game; 2. Exit." << std::endl;
+        std::cout << std::endl << "1. New Game; 2. Exit." << std::endl;
 
         for(;;){
             if (std::cin >> choice && choice > 0 && choice < 3) {
                 break;
             } else {
                 std::cout << std::endl << "Please enter 1 or 2:";
-                std::cout << std::endl << "1. Game; 2. Exit." << std::endl;
+                std::cout << std::endl << "1. New Game; 2. Exit." << std::endl;
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }

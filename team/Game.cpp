@@ -20,16 +20,16 @@ void DisplayMoveDirect(MoveDirect myMove)
 {
 	switch(myMove){
         case BLANK_UP:
-            std::cout << " U";
-            break;
-        case BLANK_DOWN:
             std::cout << " D";
             break;
+        case BLANK_DOWN:
+            std::cout << " U";
+            break;
         case BLANK_LEFT:
-            std::cout << " L";
+            std::cout << " R";
             break;
         case BLANK_RIGHT:
-            std::cout << " R";
+            std::cout << " L";
             break;
         default:;
 	}
@@ -152,52 +152,57 @@ void Game::PushToHistory(MoveDirect step){
 // let user play the game
 void Game::MoveInterface(){
     bool exit = false;
-    int choice;
+    char choice;
     while(!exit){
         std::cout << std::endl << "Play Menu:";
-        std::cout << std::endl << "1. Left; 2. Up; 3. Down; 4. Right; 5. Game Menu." << std::endl;
+        std::cout << std::endl << "A. Left; W. Up; S. Down; D. Right; F. Game Menu." << std::endl;
 
         for(;;){
-            if (std::cin >> choice && choice > 0 && choice < 6) {
+            if (std::cin >> choice && (choice == 'A' || choice == 'W' || choice == 'S' || choice == 'D' || choice == 'F'|| choice == 'a' || choice == 'w' || choice == 's' || choice == 'd' || choice == 'f')) {
                 break;
             } else {
                 std::cout << std::endl << "Please enter 1, 2, 3, 4 or 5:";
-                std::cout << std::endl << "1. Left; 2. Up; 3. Down; 4. Right; 5. Game Menu." << std::endl;
+                std::cout << std::endl << "A. Left; W. Up; S. Down; D. Right; F. Game Menu." << std::endl;
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
         }
 
         switch(choice){
-            case 1:
+            case 'D':
+			case 'd':
                 CurrentPuzzle -> Swap(BLANK_LEFT);
                 PushToHistory(BLANK_LEFT);
                 CurrentPuzzle -> Display();
                 if(CurrentPuzzle -> IsDefault()) std::cout << std::endl << "Hooray! You are at solved position :)" << std::endl;
                 break;
 
-            case 2:
+            case 'S':
+			case 's':
                 CurrentPuzzle -> Swap(BLANK_UP);
                 PushToHistory(BLANK_UP);
                 CurrentPuzzle -> Display();
                 if(CurrentPuzzle -> IsDefault()) std::cout << std::endl << "Hooray! You are at solved position :)" << std::endl;
                 break;
 
-            case 3:
+            case 'W':
+			case 'w':
                 CurrentPuzzle -> Swap(BLANK_DOWN);
                 PushToHistory(BLANK_DOWN);
                 CurrentPuzzle -> Display();
                 if(CurrentPuzzle -> IsDefault()) std::cout << std::endl << "Hooray! You are at solved position :)" << std::endl;
                 break;
 
-            case 4:
+            case 'A':
+			case 'a':
                 CurrentPuzzle -> Swap(BLANK_RIGHT);
                 PushToHistory(BLANK_RIGHT);
                 CurrentPuzzle -> Display();
                 if(CurrentPuzzle -> IsDefault()) std::cout << std::endl << "Hooray! You are at solved position :)" << std::endl;
                 break;
 
-            case 5:
+            case 'F':
+			case 'f':
                 std::cout << std::endl << "Current Puzzle:" << std::endl;
                 CurrentPuzzle -> Display();
                 exit = true;
@@ -276,7 +281,9 @@ int Game::SolveIt() {
     PuzzleSearchNode leaf = root;
     int bound = root.H;
     int t;
-    std::cout << std::endl << "Computer is thinking ..." << std::endl;
+    std::cout << std::endl << "Computer is thinking ...";
+	std::cout << std::endl << "May take up to a couple of mins in most cases ..." << std::endl;
+
     while(true){
         t = Search(root, bound, leaf);
         if(t == FOUND) {
@@ -304,4 +311,22 @@ void Game::Display() const{
     std::cout << std::endl;
     std::cout << std::endl << "Current Puzzle:" << std::endl;
     CurrentPuzzle -> Display();
+}
+
+//replay through MoveHistory
+void Game::Replay() const{
+	Puzzle tempPuzzle = *InitialPuzzle;
+	std::cout << std::endl << "Starting Game Replay:" << std::endl;
+	tempPuzzle.Display();
+	std::cout << " ";
+	std::cin.ignore();
+	std::vector<MoveDirect> tempHistory = MoveHistory;
+	std::vector<MoveDirect>::iterator it = tempHistory.begin();
+	for (; it!= tempHistory.end(); ++it){
+		std::cout << std::endl << "To continue, press any key ..." << std::endl;
+		std::cin.ignore();
+		tempPuzzle.Swap(*it);
+		tempPuzzle.Display();
+	}
+	std::cout << std::endl << "Replay ends." << std::endl;
 }
