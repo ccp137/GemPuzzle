@@ -323,7 +323,7 @@ void Game::Replay() const{
 	std::vector<MoveDirect> tempHistory = MoveHistory;
 	std::vector<MoveDirect>::iterator it = tempHistory.begin();
 	for (; it!= tempHistory.end(); ++it){
-		std::cout << std::endl << "To continue, press any key ..." << std::endl;
+		std::cout << std::endl << "To continue, press Enter ..." << std::endl;
 		std::cin.ignore();
 		tempPuzzle.Swap(*it);
 		tempPuzzle.Display();
