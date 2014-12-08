@@ -155,7 +155,8 @@ void Game::MoveInterface(){
     char choice;
     while(!exit){
         std::cout << std::endl << "Play Menu:";
-        std::cout << std::endl << "A. Left; W. Up; S. Down; D. Right; F. Game Menu." << std::endl;
+        std::cout << std::endl << "A. Left; W. Up; S. Down; D. Right; F. Game Menu.";
+	std::cout << std::endl << "Note, for example, Left means moving the cell to the right of the empty space to the left, etc." << std::endl;
 
         for(;;){
             if (std::cin >> choice && (choice == 'A' || choice == 'W' || choice == 'S' || choice == 'D' || choice == 'F'|| choice == 'a' || choice == 'w' || choice == 's' || choice == 'd' || choice == 'f')) {
@@ -303,7 +304,7 @@ void Game::Display() const{
     //std::cout << std::endl << "GameID:    " << GameID << std::endl;
     std::cout << std::endl << "Initial Puzzle:" << std::endl;
     InitialPuzzle -> Display();
-    std::cout << std::endl << "Move History:";
+    std::cout << std::endl << "Move History: (L means Left, etc.)" << std::endl;
     if(MoveHistory.size() == 0) std::cout << "  None.";
     for(int i = 0; i < MoveHistory.size(); i++){
         DisplayMoveDirect(MoveHistory[i]);
