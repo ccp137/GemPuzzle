@@ -228,7 +228,7 @@ void Puzzle::RandomSet(){
 
 // let user set the entries
 void Puzzle::ByUser(){
-	std::cout << "Please enter the entries for this " << Nrow << " x " << Ncol << " gem puzzle. 0 represents empty space." << std::endl;
+	std::cout << "Please enter the entries for this " << Nrow << " x " << Ncol << " gem puzzle." << std::endl;
 	int* tempEntries = new int[Nrow*Ncol];
 	for (int i = 0; i < Nrow*Ncol; i++){
 		tempEntries[i] = -1;

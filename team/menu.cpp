@@ -58,7 +58,7 @@ void gameMenu(){
                 if(aNewGame.SolveIt() == NOTFOUND){
                     std::cout << std::endl << "This is NOT solvable :(" << std::endl;
                 }else{
-                    std::cout << std::endl << "Got it :) Shortest solution needs " << aNewGame.GetMoveHistory().size() << " steps. Solved game:" << std::endl;
+                    std::cout << std::endl << "Got it :) Shortest solution found & appended to Move History. Solved game:" << std::endl;
                     aNewGame.Display();
                 }
                 break;
