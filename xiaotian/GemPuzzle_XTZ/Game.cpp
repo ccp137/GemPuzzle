@@ -161,7 +161,7 @@ void Game::MoveInterface(){
             if (std::cin >> choice && (choice == 'A' || choice == 'W' || choice == 'S' || choice == 'D' || choice == 'F'|| choice == 'a' || choice == 'w' || choice == 's' || choice == 'd' || choice == 'f')) {
                 break;
             } else {
-                std::cout << std::endl << "Please enter 1, 2, 3, 4 or 5:";
+                std::cout << std::endl << "Please enter A, W, S, D or F:";
                 std::cout << std::endl << "A. Left; W. Up; S. Down; D. Right; F. Game Menu." << std::endl;
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
