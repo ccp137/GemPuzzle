@@ -1,83 +1,370 @@
 ﻿GemPuzzle
 =========
-Gem Puzzle is a sliding puzzle that consists of a frame of numbered square tiles in random order with one tile missing (from [wiki](http://en.wikipedia.org/wiki/15_puzzle)).
+Gem Puzzle is a game that consists of a matrix of numbered tiles with one tile missing, allowing the player to move the numbered tiles to the empty space one at a time. The objective of the game is to arrange the numbered tiles into ascending order. Our program allows the user to play a 3­by­3 Gem Puzzle that can be entered manually or randomly generated. We have also included the options to check if the puzzle is solvable and have the program solve the puzzle with minimal moves required.
 
-## Blueprint
+## Compile and Run
+Download all the files from the **team** folder to a local directory, for example **GEM**. Open the **Terminal** on you machine, go to the **GEM** folder. Use command
 ```
-  class Puzzle
-    Description: define the basic data structure
-    Objective:
-    Variables:
-      int Nrow;
-      int Ncol;
-      int Vblank;
-      int Hblank;
-      int ** Entries;
-    Functions:
-      Puzzle(int nrow = 4, int ncol = 4);
-      Puzzle(int nrow, int ncol, int* entries);
-      Puzzle(const Puzzle& source);
-      ~Puzzle();
-      Puzzle& operator = (const Puzzle& source);
-      bool operator == (const Puzzle& compareTo) const;
-      int GetNrow() const;
-      int GetNcol() const;
-      int GetVblank() const;
-      int GetHblank() const;
-      int** GetEntries() const;
-      void SetEntries(int* entries);
-      void Display() const;
-      bool Swap(MoveDirect thisDirect);
-      void RandomSet();
-      void ByUser();
-      bool IsSovable();
-      bool IsDefault();
-  class Game
-    Description: Play the game and keep track of the moves
-    Objective:
-    Variables:
-      int GameNumber;
-      Puzzle* InitialPuzzle;
-      Puzzle* CurrentPuzzle;
-      std::vector<MoveDirect> MoveHistory;
-    Functions:
-      Game();
-      Game(const Game& source);
-      ~Game();
-      Game& operator = (const Game& source);
-      int GetGameNumber() const;
-      Puzzle* GetInitialPuzzle() const;
-      Puzzle* GetCurrentPuzzle() const;
-      std::vector<MoveDirect> GetMoveHistory() const;
-      void MoveInterface();
-      bool IsWin() const;
-      Puzzle Trace(int postion) const;
-      void Undo(int numStep);
-      Game SolveIt() const;
-      void Display() const;
-  class Menu:
-    Description:
-    Objective:
-    Variables:
-    Functions:
+  g++ *.cpp
+```  
+or
+```
+  g++ main.cpp menu.cpp Game.cpp Puzzle.cpp
+```
+Type in the following command, the game is ready for fun. For Linux and Mac,
+```
+  ./a.out
+```
+or for Windows
+```
+  a.exe
+```
+You will see an interface like this in your terminal
+```
+####################################################
+## AERSP 424 Final Project, Fall 2014, Penn State ##
+## Chengping Chai, Tonnam Balankuru, Xiaotian Zhu ##
+####################################################
+
+Welcome to GemPuzzle :)
+This program allows you to play a 3x3 GemPuzzle.
+The goal is to place the 8 tiles in order,
+by sliding tiles adjacent to the empty space.
+The program is also able to find a shortest solution.
+
+Diagram of solved 8-Puzzle:
+1   2   3
+4   5   6
+7   8
+
+Main Menu:
+1. New Game; 2. Exit.
+```
+## Example
+```
+####################################################
+## AERSP 424 Final Project, Fall 2014, Penn State ##
+## Chengping Chai, Tonnam Balankuru, Xiaotian Zhu ##
+####################################################
+
+Welcome to GemPuzzle :)
+This program allows you to play a 3x3 GemPuzzle.
+The goal is to place the 8 tiles in order,
+by sliding tiles adjacent to the empty space.
+The program is also able to find a shortest solution.
+
+Diagram of solved 8-Puzzle:
+1   2   3
+4   5   6
+7   8
+
+Main Menu:
+1. New Game; 2. Exit.
+1
+
+Initialize Game: 1. Sorted; 2. Randomly; 3. By User.
+2
+
+Current Puzzle:
+
+7   1   8
+2   6
+3   4   5
+
+Game Menu:
+1. Play; 2. Solve for Me; 3. Game Info; 4. Replay; 5. Main Menu.
+1
+
+Current Puzzle:
+
+7   1   8
+2   6
+3   4   5
+
+Play Menu:
+A. Left; W. Up; S. Down; D. Right; F. Game Menu.
+Note, for example, Left means moving the cell to the right of the empty space to the left, etc.
+w
+
+7   1   8
+2   6   5
+3   4
+
+Play Menu:
+A. Left; W. Up; S. Down; D. Right; F. Game Menu.
+Note, for example, Left means moving the cell to the right of the empty space to the left, etc.
+d
+
+7   1   8
+2   6   5
+3       4
+
+Play Menu:
+A. Left; W. Up; S. Down; D. Right; F. Game Menu.
+Note, for example, Left means moving the cell to the right of the empty space to the left, etc.
+s
+
+7   1   8
+2       5
+3   6   4
+
+Play Menu:
+A. Left; W. Up; S. Down; D. Right; F. Game Menu.
+Note, for example, Left means moving the cell to the right of the empty space to the left, etc.
+d
+
+7   1   8
+2   5
+3   6   4
+
+Play Menu:
+A. Left; W. Up; S. Down; D. Right; F. Game Menu.
+Note, for example, Left means moving the cell to the right of the empty space to the left, etc.
+f
+
+Current Puzzle:
+
+7   1   8
+2   5
+3   6   4
+
+Game Menu:
+1. Play; 2. Solve for Me; 3. Game Info; 4. Replay; 5. Main Menu.
+2
+
+Computer is thinking ...
+May take up to a couple of mins in most cases ...
+
+Got it :) Shortest solution found & appended to Move History. Solved game:
+
+Initial Puzzle:
+
+7   1   8
+2   6
+3   4   5
+
+Move History: (L means Left, etc.)
+U R D R D L U U L D D R U U R D L U L D R D L U R U L
+
+Current Puzzle:
+
+1   2   3
+4   5   6
+7   8
+
+Game Menu:
+1. Play; 2. Solve for Me; 3. Game Info; 4. Replay; 5. Main Menu.
+4
+
+Starting Game Replay:
+
+7   1   8
+2   6
+3   4   5
+
+To continue, press Enter ...
+
+
+7   1   8
+2   6   5
+3   4
+
+To continue, press Enter ...
+
+
+7   1   8
+2   6   5
+3       4
+
+To continue, press Enter ...
+
+
+7   1   8
+2       5
+3   6   4
+
+To continue, press Enter ...
+
+
+7   1   8
+2   5
+3   6   4
+
+To continue, press Enter ...
+
+
+1   8
+7   2   5
+3   6   4
+
+To continue, press Enter ...
+
+
+1       8
+7   2   5
+3   6   4
+
+To continue, press Enter ...
+
+
+1   2   8
+7       5
+3   6   4
+
+To continue, press Enter ...
+
+
+1   2   8
+7   6   5
+3       4
+
+To continue, press Enter ...
+
+
+1   2   8
+7   6   5
+3   4
+
+To continue, press Enter ...
+
+
+1   2   8
+7   6
+3   4   5
+
+To continue, press Enter ...
+
+
+1   2
+7   6   8
+3   4   5
+
+To continue, press Enter ...
+
+
+1       2
+7   6   8
+3   4   5
+
+To continue, press Enter ...
+
+
+1   6   2
+7       8
+3   4   5
+
+To continue, press Enter ...
+
+
+1   6   2
+7   4   8
+3       5
+
+To continue, press Enter ...
+
+
+1   6   2
+7   4   8
+3   5
+
+To continue, press Enter ...
+
+
+1   6   2
+4   8
+7   3   5
+
+To continue, press Enter ...
+
+
+1   6   2
+4       8
+7   3   5
+
+To continue, press Enter ...
+
+
+1   6   2
+4   3   8
+7       5
+
+To continue, press Enter ...
+
+
+1   6   2
+4   3   8
+7   5
+
+To continue, press Enter ...
+
+
+1   6   2
+4   3
+7   5   8
+
+To continue, press Enter ...
+
+
+1   6   2
+4       3
+7   5   8
+
+To continue, press Enter ...
+
+
+1       2
+4   6   3
+7   5   8
+
+To continue, press Enter ...
+
+
+1   2
+4   6   3
+7   5   8
+
+To continue, press Enter ...
+
+
+1   2   3
+4   6
+7   5   8
+
+To continue, press Enter ...
+
+
+1   2   3
+4       6
+7   5   8
+
+To continue, press Enter ...
+
+
+1   2   3
+4   5   6
+7       8
+
+To continue, press Enter ...
+
+
+1   2   3
+4   5   6
+7   8
+
+Replay ends.
+
+Game Menu:
+1. Play; 2. Solve for Me; 3. Game Info; 4. Replay; 5. Main Menu.
+
+5
+
+Main Menu:
+1. New Game; 2. Exit.
+2
+
+Byebye!
 
 ```
-
-## Things to do
-
-* class Puzzle
-	1. code blank space by 0 (xiaotian)
-	2. implement the IsSolvable() function (chengping)
-	3. add checking to ByUser() function according to the dimensions (xiaotian)
-	4. maybe later adding distance function to facilitate SolveIt() (can wait)
-	5. bool IsDefault(need to be tested)
-* class Game
-	1. basic features (xiaotian)
-	2. other staff by chengping and tonnam (please see comments)
-	3. think about proving more moving options (tonnam)
-
-* class Menu
-	1. scketch up the plan for Menu (tonnam)
 
 
 ## Git command
